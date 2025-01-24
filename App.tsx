@@ -1,25 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { MealCategories, MealsData } from './data/data';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import CategoriesScreen from "./screens/CategoriesScreen";
+import React from "react";
 
 export default function App() {
-  // console.log('MealsData: ', MealsData);
-  // console.log('Category Data: ', MealCategories);
-  
-  
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Text style={{color: '#fff'}}>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <>
+      <StatusBar style="light" />
+      <CategoriesScreen></CategoriesScreen>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  // container: {
+  //   flex: 1,
+  //   // alignItems: "center",
+  //   // justifyContent: "center",
+  // },
 });

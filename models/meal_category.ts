@@ -1,7 +1,7 @@
 class MealCategory {
-    id: string;
-    title: string;
-    color: string;
+    readonly id: string;
+    readonly title: string;
+    readonly color: string;
 
     constructor(
         id: string,

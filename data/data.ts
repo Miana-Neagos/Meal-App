@@ -1,16 +1,16 @@
 import Meal from "../models/meals";
 import MealCategory from "../models/meal_category";
 
-export const MealCategories = [
-    new MealCategory('c2', 'Quick & Easy','#f54242'),
+export const MealCategories: readonly MealCategory[] = [
+    new MealCategory('c2', 'Quick & Easy','#D9EAD3'),
     new MealCategory('c1', 'Italian','#f5428d'),
     new MealCategory('c4', 'German', '#f5d142'),
-    new MealCategory('c3', 'Hamburgers', '#f5a442'),
-    new MealCategory('c5', 'Light & Lovely', '#368dff'),
     new MealCategory('c6', 'Exotic', '#41d95d'),
+    new MealCategory('c5', 'Light & Lovely', '#368dff'),
+    new MealCategory('c3', 'Hamburgers', '#f5a442'),
     new MealCategory('c7', 'Breakfast', '#9eecff'),
-    new MealCategory('c8', 'Asian', '#b9ffb0'),
     new MealCategory('c9', 'French', '#ffc7ff'),
+    new MealCategory('c8', 'Asian', '#b9ffb0'),
     new MealCategory('c10', 'Summer', '#47fced')
 ]
 
