@@ -6,22 +6,47 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import { RootStackParamList } from "./navigation/types";
+import { colorTheme } from "./colorTheme";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
     <>
-    <StatusBar style="dark" />
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="MealCategories" component={CategoriesScreen} options={{title: 'All Categories'}}></Stack.Screen>
-        <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} options={{title: 'Overview'}}></Stack.Screen>
-      </Stack.Navigator>
-    </NavigationContainer>
+      <StatusBar style="light" />
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: colorTheme.colorDarkBrown },
+            headerTintColor: colorTheme.colorLightGrey,
+            contentStyle: { backgroundColor: colorTheme.colorDarkBrown },
+          }}
+        >
+          <Stack.Screen
+            name="MealCategories"
+            component={CategoriesScreen}
+            options={{
+              title: "All Categories",
+              // headerStyle: { backgroundColor: colorTheme.colorDarkBrown},
+              // headerTintColor: colorTheme.colorLightGrey,
+              // contentStyle: { backgroundColor: colorTheme.colorDarkBrown}
+            }}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="MealsOverview"
+            component={MealsOverviewScreen}
+            // options={{ title: "Overview" }}
+            // options={({route}) => {
+            //   const catId = route.params.categoryId
+            //   return {
+            //     title: catId
+            //   }
+            // }}
+          ></Stack.Screen>
+        </Stack.Navigator>
+      </NavigationContainer>
     </>
   );
 }
 
-const styles = StyleSheet.create({
-});
+const styles = StyleSheet.create({});

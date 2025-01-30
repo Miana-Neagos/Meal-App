@@ -29,6 +29,7 @@ const MealItem:React.FC<MealItemProps> = ({meal}) => {
                     </View>
                 </View>
             </Pressable>
+            {/* <View></View> */}
         </View>
     )
 };
@@ -38,7 +39,7 @@ const styles = StyleSheet.create ({
         backgroundColor: colorTheme.colorWhite,
         borderRadius: 10,
         gap: 8,
-        marginVertical: 5,
+        margin: 15,
         elevation: 4,
         shadowColor: "#000000",
         shadowOffset: { width: 0, height: 2 },
