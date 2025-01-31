@@ -1,13 +1,12 @@
-// import { RouteProp } from "@react-navigation/native";
-// import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import MealCategory from "../models/meal_category";
+import Meal from "../models/meals";
 
+export type CategoryParam = {category: MealCategory}
 
 export type RootStackParamList = {
-    MealCategories: undefined;
-    MealsOverview: {categoryId: string, categoryColor: string};
+    MealCategories: CategoryParam;
+    MealsData: CategoryParam;
+    MealDetails: {mealId : string};
 };
 
-// export type NavigationProp<T extends keyof RootStackParamList> = NativeStackNavigationProp<RootStackParamList, T>;
-
-// export type RoutePropType<T extends keyof RootStackParamList> = RouteProp<RootStackParamList, T>;
 

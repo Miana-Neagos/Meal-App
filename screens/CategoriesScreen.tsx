@@ -3,14 +3,21 @@ import { MealCategories } from "../data/data";
 import CategoryGridTile from "../components/CategoryGridTile";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/types";
+import MealCategory from "../models/meal_category";
 
-type CategoriesScreenProp = NativeStackScreenProps<RootStackParamList, 'MealCategories'>;
+type CategoriesScreenProp = NativeStackScreenProps<
+  RootStackParamList,
+  "MealCategories"
+>;
 
-const CategoriesScreen:React.FC<CategoriesScreenProp> = ({navigation}) => {
-  const onPressHandler = (categoryId:string, categoryColor: string) => {
-    navigation.navigate("MealsOverview", { categoryId, categoryColor });
-  }
-    return (
+const CategoriesScreen: React.FC<CategoriesScreenProp> = ({ navigation }) => {
+  console.log('categories screen');
+  
+  
+  const onPressHandler = (category: MealCategory) => {
+    navigation.navigate("MealsData", { category });
+  };
+  return (
     <View>
       <FlatList
         data={MealCategories}
@@ -18,7 +25,9 @@ const CategoriesScreen:React.FC<CategoriesScreenProp> = ({navigation}) => {
           <CategoryGridTile
             title={itemData.item.title}
             color={itemData.item.color}
-            onPress={() => onPressHandler(itemData.item.id, itemData.item.color)}
+            onPress={() =>
+              onPressHandler(itemData.item)
+            }
           />
         )}
         keyExtractor={(item) => item.id}
@@ -28,6 +37,5 @@ const CategoriesScreen:React.FC<CategoriesScreenProp> = ({navigation}) => {
     </View>
   );
 };
-
 
 export default CategoriesScreen;

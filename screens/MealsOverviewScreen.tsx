@@ -5,20 +5,21 @@ import { MealsData, MealCategories } from "../data/data";
 import MealItem from "../components/MealItem";
 import { useEffect, useLayoutEffect } from "react";
 
-// type MealsOverviewScreenProps = {
-//     route: RoutePropType<'MealsOverview'>;
-// }
 type MealsOverviewScreenProps = NativeStackScreenProps<
   RootStackParamList,
-  "MealsOverview"
+  "MealsData"
 >;
 
 const MealsOverviewScreen: React.FC<MealsOverviewScreenProps> = ({ route, navigation }) => {
-  const catId = route.params.categoryId;
-  const categoryColor = route.params.categoryColor;
+  // console.log('meals overview');
+  // console.log(route.params.category);
+  
+  const {id, color} = route.params.category
+  // const catId = route.params.categoryId;
+  // const categoryColor = route.params.categoryColor;
   
   const meals = MealsData.filter((meal) => {
-    return meal.categoryId.includes(catId);
+    return meal.categoryId.includes(id);
   });
   
   // useEffect(() => {
@@ -31,13 +32,13 @@ const MealsOverviewScreen: React.FC<MealsOverviewScreenProps> = ({ route, naviga
   // }, [navigation, catId])
 
   useLayoutEffect(() => {
-    const catTitle = MealCategories.find((category) => category.id === catId)?.title
+    const catTitle = MealCategories.find((category) => category.id === id)?.title
     console.log(catTitle);
   
     navigation.setOptions({
       title: catTitle,
     });
-  }, [navigation, catId])
+  }, [navigation, id])
   
 
   return (

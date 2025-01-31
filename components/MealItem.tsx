@@ -1,20 +1,26 @@
 import { StyleSheet, View, Text, Pressable, Image, Platform } from "react-native";
 import Meal from "../models/meals";
 import { colorTheme } from "../colorTheme";
-// import colorTheme from "../colorTheme"
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../navigation/types";
 
 type MealItemProps = {
     meal: Meal;
 }
 
 const MealItem:React.FC<MealItemProps> = ({meal}) => {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+    // console.log('meal item');
+    // console.log({meal});
+    const onPressHandler = () => {
+        navigation.navigate('MealDetails', {mealId: meal.id})
+    }
+    
     return (
         <View style={styles.mealITem}>
             <Pressable android_ripple={{color: colorTheme.colorLightGrey }} style={({ pressed }) => pressed ? styles.buttonPressed : null}
-        onPress={() => {
-            console.log('pressed');
-            return null;
-        }}>
+        onPress={() => onPressHandler()}>
                 <View style={styles.innerContainer}>
                     <Image source={{uri: meal.imageUrl}} style={styles.image}/>
                     <View>
@@ -24,12 +30,9 @@ const MealItem:React.FC<MealItemProps> = ({meal}) => {
                         <Text>{meal.duration}</Text>
                         <Text>{meal.complexity}</Text>
                         <Text>{meal.affordability}</Text>
-                        {/* <Text>{meal.complexity.toUpperCase()}</Text>
-                        <Text>{meal.affordability.toUpperCase()}</Text> */}
                     </View>
                 </View>
             </Pressable>
-            {/* <View></View> */}
         </View>
     )
 };
