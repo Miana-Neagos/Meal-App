@@ -10,12 +10,10 @@ type CategoriesScreenProp = NativeStackScreenProps<
   "MealCategories"
 >;
 
-const CategoriesScreen: React.FC<CategoriesScreenProp> = ({ navigation }) => {
-  console.log('categories screen');
-  
+const CategoriesScreen: React.FC<CategoriesScreenProp> = ({ navigation }) => {  
   
   const onPressHandler = (category: MealCategory) => {
-    navigation.navigate("MealsData", { category });
+    navigation.navigate("MealsOverview", { category });
   };
   return (
     <View>

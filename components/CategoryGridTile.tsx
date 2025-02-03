@@ -6,10 +6,7 @@ type CategoryGridTileProps = {
   onPress: () => void;
 };
 
-const CategoryGridTile: React.FC<CategoryGridTileProps> = ({
-  title,
-  color, onPress
-}) => {
+const CategoryGridTile: React.FC<CategoryGridTileProps> = ({ title, color, onPress}) => {
   return (
     <View style={styles.categoryGrid}>
       <Pressable

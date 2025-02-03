@@ -7,7 +7,7 @@ import { useEffect, useLayoutEffect } from "react";
 
 type MealsOverviewScreenProps = NativeStackScreenProps<
   RootStackParamList,
-  "MealsData"
+  "MealsOverview"
 >;
 
 const MealsOverviewScreen: React.FC<MealsOverviewScreenProps> = ({ route, navigation }) => {
