@@ -1,4 +1,5 @@
 import { Text, View, StyleSheet } from "react-native";
+import { colorTheme } from "../../colorTheme";
 
 const Subtitle: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -12,19 +13,21 @@ const Subtitle: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 const styles = StyleSheet.create({
   container: {
-    // alignItems: 'center',
+    width: '90%',
     marginVertical: 8,
-    marginHorizontal: 8,
+    // marginHorizontal: 14,
     paddingHorizontal: 16,
-    borderBottomWidth: 2,
-    borderBottomColor: "#ccc",
-    alignSelf: "flex-start",
+    borderBottomWidth: 3,
+    borderBottomColor: colorTheme.colorGrey,
+    alignSelf: "center",
   },
   subtitle: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#4A4A4A",
-  },
+    // color: "#4A4A4A",
+    textAlign: 'center',
+    color: colorTheme.colorGrey,
+  }, 
 });
 
 export default Subtitle;
