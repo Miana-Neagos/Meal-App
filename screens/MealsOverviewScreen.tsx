@@ -11,13 +11,7 @@ type MealsOverviewScreenProps = NativeStackScreenProps<
 >;
 
 const MealsOverviewScreen: React.FC<MealsOverviewScreenProps> = ({ route, navigation }) => {
-  // console.log('meals overview');
-  // console.log(route.params.category);
-  
-  const {id, color} = route.params.category
-  // const catId = route.params.categoryId;
-  // const categoryColor = route.params.categoryColor;
-  
+  const {id} = route.params.category
   const meals = MealsData.filter((meal) => {
     return meal.categoryId.includes(id);
   });

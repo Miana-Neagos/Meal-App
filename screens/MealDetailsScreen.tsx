@@ -7,6 +7,7 @@ import QuickInfo from "../components/MealDetail/QuickInfo";
 import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
 import { colorTheme } from "../colorTheme";
+import IconButton from "../components/IconButton";
 
 type MealDetailsScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -20,9 +21,14 @@ const MealDetailsScreen: React.FC<MealDetailsScreenProps> = ({
   const { mealId } = route.params;
 
   const selectedMeal = MealsData.find((meal) => meal.id === mealId);
+  const headerButtonHandler = () => {
+    console.log('button was pressed'); 
+  }
 
   useEffect(() => {
-    navigation.setOptions({ title: selectedMeal?.title || "Meal Details" });
+    navigation.setOptions({ title: selectedMeal?.title || "Meal Details", headerRight: () => {
+     return  <IconButton icon='heart' color={colorTheme.colorBlack} onPress={headerButtonHandler}/>
+    } });
   }, [selectedMeal, navigation]);
 
   return (
@@ -34,17 +40,17 @@ const MealDetailsScreen: React.FC<MealDetailsScreenProps> = ({
         <Image source={{ uri: selectedMeal?.imageUrl }} style={styles.image} />
         <Text style={styles.title}>{selectedMeal?.title}</Text>
       </View>
-        <QuickInfo
-          details={{
-            duration: selectedMeal?.duration,
-            complexity: selectedMeal?.complexity,
-            affordability: selectedMeal?.affordability,
-          }}
-        ></QuickInfo>
-        <View style={styles.sectionContainer}>
-          <Subtitle>Ingredients</Subtitle>
-          <List data={selectedMeal?.ingredients} />
-        </View>
+      <QuickInfo
+        details={{
+          duration: selectedMeal?.duration,
+          complexity: selectedMeal?.complexity,
+          affordability: selectedMeal?.affordability,
+        }}
+      ></QuickInfo>
+      <View style={styles.sectionContainer}>
+        <Subtitle>Ingredients</Subtitle>
+        <List data={selectedMeal?.ingredients} />
+      </View>
       <View style={styles.sectionContainer}>
         <Subtitle>Steps</Subtitle>
         <List data={selectedMeal?.steps} />
@@ -60,13 +66,10 @@ const styles = StyleSheet.create({
   contentContainer: {
     alignItems: "center",
     gap: 10,
-    // width: "100%",
-    // padding: 8,
-    // justifyContent: 'center',
   },
   imgContainer: {
     margin: 8,
-    width: '90%',
+    width: "90%",
     alignItems: "center",
   },
   image: {
@@ -83,7 +86,7 @@ const styles = StyleSheet.create({
     color: colorTheme.colorGrey,
   },
   sectionContainer: {
-    width: '100%',
+    width: "100%",
     gap: 5,
   },
 });
