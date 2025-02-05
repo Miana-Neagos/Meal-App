@@ -27,7 +27,6 @@ const MealsOverviewScreen: React.FC<MealsOverviewScreenProps> = ({ route, naviga
 
   useLayoutEffect(() => {
     const catTitle = MealCategories.find((category) => category.id === id)?.title
-    console.log(catTitle);
   
     navigation.setOptions({
       title: catTitle,
@@ -40,7 +39,6 @@ const MealsOverviewScreen: React.FC<MealsOverviewScreenProps> = ({ route, naviga
       <FlatList
         data={meals}
         renderItem={(itemData) => <MealItem meal={itemData.item} />}
-        // keyExtractor={() =>}
       ></FlatList>
     </View>
   );
