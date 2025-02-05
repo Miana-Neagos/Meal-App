@@ -8,4 +8,5 @@ export const colorTheme = {
     colorRipple:'#e5e6e9',
     colorGreen: "#6e876e",
     colorDarkBrown: '#1E1409',
+    colorLightOrange: "#f68f51",
 }

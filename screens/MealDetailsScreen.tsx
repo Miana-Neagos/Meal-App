@@ -21,6 +21,7 @@ const MealDetailsScreen: React.FC<MealDetailsScreenProps> = ({
   const { mealId } = route.params;
 
   const selectedMeal = MealsData.find((meal) => meal.id === mealId);
+  
   const headerButtonHandler = () => {
     console.log('button was pressed'); 
   }

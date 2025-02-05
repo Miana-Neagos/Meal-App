@@ -62,9 +62,9 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     gap: 3,
-    overflow: Platform.OS === "android" ? "hidden" : "visible",
   },
   image: {
+    borderRadius: 10,
     width: "100%",
     height: 200,
   },

@@ -9,18 +9,20 @@ type CategoryGridTileProps = {
 const CategoryGridTile: React.FC<CategoryGridTileProps> = ({ title, color, onPress}) => {
   return (
     <View style={styles.categoryGrid}>
-      <Pressable
-        android_ripple={{ color: "#F1F2F3" }}
-        style={({ pressed }) => [
-          styles.button,
-          pressed ? styles.buttonPressed : null,
-        ]}
-        onPress={onPress}
-      >
-        <View style={[styles.innerContainer, { backgroundColor: color }]}>
-          <Text style={styles.title}>{title}</Text>
-        </View>
-      </Pressable>
+      <View style={styles.outerContainer}>
+        <Pressable
+          android_ripple={{ color: "#F1F2F3" }}
+          style={({ pressed }) => [
+            styles.button,
+            pressed ? styles.buttonPressed : null,
+          ]}
+          onPress={onPress}
+        >
+          <View style={[styles.innerContainer, { backgroundColor: color }]}>
+            <Text style={styles.title}>{title}</Text>
+          </View>
+        </Pressable>
+      </View>
     </View>
   );
 };
@@ -37,7 +39,12 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     shadowOpacity: 0.35,
     backgroundColor: "#ffffff",
-    overflow: Platform.OS === "android" ? "hidden" : "visible",
+    // overflow: Platform.OS === "android" ? "hidden" : "visible",
+  },
+  outerContainer: {
+    flex: 1,
+    borderRadius: 8,
+    overflow: 'hidden',
   },
   button: {
     flex: 1,
