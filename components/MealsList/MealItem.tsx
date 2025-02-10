@@ -6,17 +6,19 @@ import {
   Image,
   Platform,
 } from "react-native";
-import Meal from "../models/meals";
-import { colorTheme } from "../colorTheme";
+import Meal from "../../models/meals";
+import { colorTheme } from "../../colorTheme";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigation/types";
+import { RootStackParamList } from "../../navigation/types";
 
 type MealItemProps = {
   meal: Meal;
 };
 
 const MealItem: React.FC<MealItemProps> = ({ meal }) => {
+  console.log('meal item');
+  
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     

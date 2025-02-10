@@ -7,12 +7,13 @@ import MealDetailsScreen from "./screens/MealDetailsScreen";
 import DrawerNavigator from "./DrawerNavigator";
 import { RootStackParamList } from "./navigation/types";
 import FavoritesContextProvider from "./store/favoritesContext";
+import { StyleSheet, View } from "react-native";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
-    <>
+    <View style={styles.root}>
       <StatusBar style="dark" />
       <FavoritesContextProvider>
         <NavigationContainer>
@@ -39,7 +40,14 @@ export default function App() {
           </Stack.Navigator>
         </NavigationContainer>
       </FavoritesContextProvider>
-    </>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    margin: 5,
+  },
+})
 

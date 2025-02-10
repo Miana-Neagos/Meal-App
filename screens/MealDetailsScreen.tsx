@@ -2,12 +2,13 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import { RootStackParamList } from "../navigation/types";
 import { MealsData } from "../data/data";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import QuickInfo from "../components/MealDetail/QuickInfo";
 import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
 import { colorTheme } from "../colorTheme";
 import IconButton from "../components/IconButton";
+import { FavoritesContext } from "../store/favoritesContext";
 
 type MealDetailsScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -18,19 +19,21 @@ const MealDetailsScreen: React.FC<MealDetailsScreenProps> = ({
   route,
   navigation,
 }) => {
+  const favsContext = useContext(FavoritesContext);
   const { mealId } = route.params;
 
   const selectedMeal = MealsData.find((meal) => meal.id === mealId);
+  const mealIsFav = favsContext.ids.includes(mealId);
   
-  const headerButtonHandler = () => {
-    console.log('button was pressed'); 
+  const manageFavs = () => {
+    mealIsFav? favsContext.removeFavorites(mealId) : favsContext.addFavorites(mealId);
   }
 
   useEffect(() => {
-    navigation.setOptions({ title: selectedMeal?.title || "Meal Details", headerRight: () => {
-     return  <IconButton icon='heart' color={colorTheme.colorBlack} onPress={headerButtonHandler}/>
+    navigation.setOptions({title: selectedMeal?.title || "Meal Details", headerRight: () => {
+     return  <IconButton icon={mealIsFav ? 'heart' : 'heart-outline'} color={colorTheme.colorBlack} onPress={manageFavs}/>
     } });
-  }, [selectedMeal, navigation]);
+  }, [selectedMeal, navigation, mealIsFav]);
 
   return (
     <ScrollView
@@ -39,7 +42,6 @@ const MealDetailsScreen: React.FC<MealDetailsScreenProps> = ({
     >
       <View style={styles.imgContainer}>
         <Image source={{ uri: selectedMeal?.imageUrl }} style={styles.image} />
-        <Text style={styles.title}>{selectedMeal?.title}</Text>
       </View>
       <QuickInfo
         details={{
@@ -63,6 +65,7 @@ const MealDetailsScreen: React.FC<MealDetailsScreenProps> = ({
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
+    marginBottom: 20,
   },
   contentContainer: {
     alignItems: "center",

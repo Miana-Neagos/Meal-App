@@ -1,9 +1,8 @@
-import { StyleSheet, View, FlatList } from "react-native";
 import { RootStackParamList } from "../navigation/types";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MealsData, MealCategories } from "../data/data";
-import MealItem from "../components/MealItem";
 import { useEffect, useLayoutEffect } from "react";
+import MealsList from "../components/MealsList/MealsList";
 
 type MealsOverviewScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -11,6 +10,7 @@ type MealsOverviewScreenProps = NativeStackScreenProps<
 >;
 
 const MealsOverviewScreen: React.FC<MealsOverviewScreenProps> = ({ route, navigation }) => {
+  
   const {id} = route.params.category
   const meals = MealsData.filter((meal) => {
     return meal.categoryId.includes(id);
@@ -35,20 +35,8 @@ const MealsOverviewScreen: React.FC<MealsOverviewScreenProps> = ({ route, naviga
   
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={meals}
-        renderItem={(itemData) => <MealItem meal={itemData.item} />}
-      ></FlatList>
-    </View>
+    <MealsList mealsData={meals}/>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-});
 
 export default MealsOverviewScreen;
