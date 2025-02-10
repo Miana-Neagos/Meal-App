@@ -16,21 +16,21 @@ type FavoritesContextProviderProps = {
   children: ReactNode;
 };
 
-const FavoritesContextProvider: React.FC<FavoritesContextProviderProps> = ({
-  children,
-}) => {
-  const [favorites, setFavorites] = useState<string[]>([]);
+const FavoritesContextProvider: React.FC<FavoritesContextProviderProps> = ({ children}) => {
+  const [favoriteIds, setFavorites] = useState<string[]>([]);
+
   const addFavorites = ( id: string) => {
     console.log(`adding favs`, id)
-    // setFavorites({currentFavs => );
+    setFavorites(currentFavs => [...currentFavs, id] );
   };
+
   const removeFavorites = ( id: string) => {
     console.log(`removing favs`, id)
-    // setFavorites(currentFavs => );
+    setFavorites(currentFavs => currentFavs.filter(mealId => mealId !== id));
   };
 
   const contextValue: FavoritesContextProps = {
-    ids: favorites,
+    ids: favoriteIds,
     addFavorites,
     removeFavorites,
   }
