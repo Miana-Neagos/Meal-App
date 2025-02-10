@@ -17,7 +17,6 @@ type MealItemProps = {
 };
 
 const MealItem: React.FC<MealItemProps> = ({ meal }) => {
-  console.log('meal item');
   
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
