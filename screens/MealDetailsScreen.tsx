@@ -8,25 +8,27 @@ import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
 import { colorTheme } from "../colorTheme";
 import IconButton from "../components/IconButton";
-import { FavoritesContext } from "../store/favoritesContext";
+// import { FavoritesContext } from "../store/context/favoritesContext";
+import { useAppSelector, useAppDispatch } from "../store/redux/hooks";
+import { addFavorites, removeFavorites } from "../store/redux/favorites";
 
 type MealDetailsScreenProps = NativeStackScreenProps<
   RootStackParamList,
   "MealDetails"
 >;
 
-const MealDetailsScreen: React.FC<MealDetailsScreenProps> = ({
-  route,
-  navigation,
-}) => {
-  const favsContext = useContext(FavoritesContext);
+const MealDetailsScreen: React.FC<MealDetailsScreenProps> = ({ route, navigation }) => {
+
+  const favMealIds = useAppSelector((state) => state.favoriteMeals.ids);
+  const dispatch = useAppDispatch();
+  // const favsContext = useContext(FavoritesContext);
   const { mealId } = route.params;
 
   const selectedMeal = MealsData.find((meal) => meal.id === mealId);
-  const mealIsFav = favsContext.ids.includes(mealId);
+  const mealIsFav = favMealIds.includes(mealId);
   
   const manageFavs = () => {
-    mealIsFav? favsContext.removeFavorites(mealId) : favsContext.addFavorites(mealId);
+    mealIsFav? dispatch(removeFavorites({id: mealId})) : dispatch(addFavorites({id: mealId}));
   }
 
   useEffect(() => {
